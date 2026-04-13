@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sphere Trajectory Simulator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <aside class="panel">
+    <h1>Sphere Trajectory Simulator</h1>
+    <p class="subtitle">3D launch simulation for layered sphere packs</p>
+
+    <div class="grid">
+      <label>FPS (1-30000)
+        <input id="fps" type="number" min="1" max="30000" value="60" />
+      </label>
+      <label>Cylinder Diameter in (1-6)
+        <input id="diameter" type="number" min="1" max="6" step="0.01" value="3" />
+      </label>
+      <label>Sphere Diameter in (0.1-1)
+        <input id="sphereSize" type="number" min="0.1" max="1" step="0.01" value="0.25" />
+      </label>
+      <label>Sphere Space in (0-0.25)
+        <input id="spacing" type="number" min="0" max="0.25" step="0.01" value="0" />
+      </label>
+      <label>Sphere Rows (vertical, 1-250)
+        <input id="rows" type="number" min="1" max="250" value="10" />
+      </label>
+      <label>Inset Rows / Layers (1-250)
+        <input id="layers" type="number" min="1" max="250" value="2" />
+      </label>
+      <label>Initial Speed (m/s)
+        <input id="initialSpeed" type="number" min="1" max="3000" step="1" value="200" />
+      </label>
+      <label>Sphere Density
+        <select id="density">
+          <option value="7800">Steel (7800 kg/m³)</option>
+          <option value="8960">Copper (8960 kg/m³)</option>
+          <option value="2700">Aluminum (2700 kg/m³)</option>
+          <option value="4500">Titanium (4500 kg/m³)</option>
+          <option value="19300">Tungsten (19300 kg/m³)</option>
+          <option value="2500">Ceramic - Alumina (2500 kg/m³)</option>
+          <option value="3900">Ceramic - Zirconia (3900 kg/m³)</option>
+          <option value="3200">Ceramic - Silicon Carbide (3200 kg/m³)</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="buttons">
+      <button id="buildBtn">Build Pack</button>
+      <button id="launchBtn">Launch</button>
+      <button id="resetBtn">Reset</button>
+      <button id="recordBtn">Record 8s WebM</button>
+      <button id="snapshotBtn">Save PNG</button>
+      <button id="exportBtn">Export JSON + CSV</button>
+    </div>
+
+    <div class="stats">
+      <h2>Calculated Pack</h2>
+      <p id="sphereCountOut">Sphere count / row: 0</p>
+      <p id="totalOut">Total spheres: 0</p>
+      <h2>Retained Speed</h2>
+      <table>
+        <thead>
+          <tr><th>Distance</th><th>Speed (m/s)</th><th>Retained</th></tr>
+        </thead>
+        <tbody id="speedTable"></tbody>
+      </table>
+    </div>
+  </aside>
+
+  <main>
+    <canvas id="scene"></canvas>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
